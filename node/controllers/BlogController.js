@@ -1,4 +1,4 @@
-import BlogModel from "../models/BlogModel";
+import BlogModel from "../models/BlogModel.js";
 
 //metodos para el crud
 
@@ -15,10 +15,10 @@ export const getAllBlogs=async (req,res)=>{
 //mostrar un registro
 export const getBlog=async(req,res)=>{
     try {
-        const blog=BlogModel.findAll({
+        const blog=await BlogModel.findAll({
             where:{id:req.params.id}
         })
-        res.json(blog)
+        res.json(blog[0])
     } catch (error) {
         res.json({message: error.message})
     }
